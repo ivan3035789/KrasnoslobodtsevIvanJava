@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Scanner;
 
 public class Data {
-    String name;
+    private String name;
 
     public void setName(String name) {
         this.name = name;
@@ -17,13 +17,7 @@ public class Data {
 
     public String choiceName(@NotNull String name) {
         String[] strName = {"Привет, " + name, "Нет такого имени"};
-        String choice;
-        if (name.equals("Вячеслав")) {
-            choice = strName[0];
-        } else {
-            choice = strName[1];
-        }
-        return choice;
+        return name.equals("Вячеслав") ? strName[0] : strName[1];
     }
 
     public void printName(String name) {

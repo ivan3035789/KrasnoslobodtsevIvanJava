@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Scanner;
 
 public class Data2 {
-    int num;
+    private int num;
 
     public int getNum() {
         return num;
@@ -16,13 +16,7 @@ public class Data2 {
     }
 
     public String choiceNum(@NotNull int num) {
-        String greeting;
-        if (num > 7) {
-            greeting = "Привет";
-        } else {
-            greeting = "";
-        }
-        return greeting;
+        return num > 7 ? "Привет" : "";
     }
 
     public void printGreeting(String greeting) {

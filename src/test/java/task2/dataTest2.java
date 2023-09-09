@@ -1,10 +1,11 @@
-package task1;
+package task2;
 
+import helper.Utils;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import task2.Data2;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
