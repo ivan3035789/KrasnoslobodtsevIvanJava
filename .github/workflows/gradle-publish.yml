@@ -34,7 +34,7 @@ jobs:
     - name: Tests
       run: ./gradlew clean test --info "-Dselenide.headless=true"
     - name: Upload a Build Artifact
-      uses: actions/download-artifact@v2.1.1
+      uses: actions/upload-artifact@v3
       if: success() || failure()
       with:
         name: Report_index.html
