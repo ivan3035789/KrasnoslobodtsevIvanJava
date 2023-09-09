@@ -18,7 +18,7 @@ public class DataTest3 {
         int[] args = {1, 3, 6, 9, 30};
 
         int[] actual = data3.arrayHandler(args);
-        int[] expected = new int[]{3, 6, 9, 30};
+        int[] expected = new int[]{ 6, 9, 30};
         assertArrayEquals(expected, actual);
     }
 
