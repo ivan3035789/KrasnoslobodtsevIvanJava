@@ -1,5 +1,7 @@
 # Krasnoslobodtsev Ivan Java
 
+[![Java CI with Gradle](https://github.com/ivan3035789/KrasnoslobodtsevIvanJava/actions/workflows/gradle-publish.yml/badge.svg)](https://github.com/ivan3035789/KrasnoslobodtsevIvanJava/actions/workflows/gradle-publish.yml)
+
 Задания требуется выполнить с использованием любого из нижеперечисленных языков программирования (если иное не было оговорено в чате с ASTON Trainee):
 Java (11 версия)
 C#
