@@ -55,11 +55,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: tests_Report_index.html
-  reports:
-    runs-on: ubuntu-latest
-    if: ${{ always() }}
-    steps:
-      - name: Download Test Reports Folder
-        uses: actions/download-artifact@v2
-        with:
-          name: jococo_Report_index.html
+    - name: Download Test Reports Folder
+      uses: actions/download-artifact@v2
+      with:
+        name: jococo_Report_index.html
