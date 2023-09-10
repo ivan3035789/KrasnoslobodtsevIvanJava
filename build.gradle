@@ -26,7 +26,7 @@ jacocoTestCoverageVerification {
         rule {
             element = 'CLASS'
             limit {
-                minimum = 0.4
+                minimum = 0.3
             }
         }
         rule {

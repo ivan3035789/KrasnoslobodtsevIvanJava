@@ -8,14 +8,6 @@ public class Data3 {
     private int[] argsNum2 = new int[0];
     private int[] argsNum = new int[0];
 
-    public int[] getArgsNum() {
-        return argsNum2;
-    }
-
-    public int[] getArgsNum2() {
-        return argsNum2;
-    }
-
     public void inputAndSave() {
         Scanner scanner = new Scanner(System.in);
         String line = null;
