@@ -26,7 +26,10 @@ public class Data {
 
     public String inputData() {
         Scanner scanner = new Scanner(System.in);
-        String name = scanner.nextLine();
+        String line = null;
+        while ((line = scanner.nextLine()) != null && !line.isEmpty()) {
+            name = scanner.nextLine();
+        }
         return name;
     }
 

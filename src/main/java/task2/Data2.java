@@ -33,8 +33,9 @@ public class Data2 {
         }
     }
 
-    public void printGreeting(String greeting) {
+    public String printGreeting(String greeting) {
         System.out.println(greeting);
+        return greeting;
     }
 
     public static void main(String []args) {
