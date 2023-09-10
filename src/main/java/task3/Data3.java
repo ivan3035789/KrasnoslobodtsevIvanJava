@@ -20,6 +20,7 @@ public class Data3 {
         Scanner scanner = new Scanner(System.in);
         String line = null;
 
+
         while ((line = scanner.nextLine()) != null && !line.isEmpty()) {
             Scanner lineScanner = new Scanner(line);
             try {
@@ -31,7 +32,7 @@ public class Data3 {
                 tmp[lastIndex] = inputNum;
                 argsNum2 = tmp;
             } catch (Exception e) {
-                System.out.println("Вводите только цифры");
+                System.out.println("Вводите только цифры и целые числа");
             }
         }
     }
