@@ -20,12 +20,12 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build jacocoTestCoverageVerification
       - name: Upload a Build Artifact
-          uses: actions/upload-artifact@v3
-          if: success() || failure()
-          with:
-            name: Report_index.html
-            path: build/jacocoHtml/index.html
-        report:
+        uses: actions/upload-artifact@v3
+        if: success() || failure()
+        with:
+          name: Report_index.html
+          path: build/jacocoHtml/index.html
+    report:
           runs-on: ubuntu-latest
 #          needs: tests
           if: ${{ always() }}
