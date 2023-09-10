@@ -24,11 +24,15 @@ public class Data {
         System.out.println(name);
     }
 
-    public static void main(String []args) {
-        Data data = new Data();
+    public String inputData() {
         Scanner scanner = new Scanner(System.in);
         String name = scanner.nextLine();
-        data.setName(name);
-        data.printName(data.choiceName(name));
+        return name;
+    }
+
+    public static void main(String []args) {
+        Data data = new Data();
+        data.setName(data.inputData());
+        data.printName(data.choiceName(data.getName()));
     }
 }
