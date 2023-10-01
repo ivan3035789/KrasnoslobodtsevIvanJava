@@ -1,4 +1,4 @@
-package task3;
+package ru.exsample.task3;
 
 import java.util.Arrays;
 import java.util.Scanner;

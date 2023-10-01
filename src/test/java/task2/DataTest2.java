@@ -3,6 +3,7 @@ package task2;
 import helper.Utils;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+import ru.exsample.task2.Data2;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -10,7 +11,7 @@ import java.io.PrintStream;
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class dataTest2 {
+public class DataTest2 {
     Data2 data2 = new Data2();
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = out;
@@ -19,6 +20,7 @@ public class dataTest2 {
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
     }
+
     @AfterEach
     public void restoreStreams() {
         System.setOut(originalOut);

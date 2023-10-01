@@ -1,9 +1,11 @@
 package helper;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Utils {
+
+    private Utils() {
+    }
 
     public static String randomInvalidName() {
         Random random = new Random();

@@ -2,10 +2,10 @@ package task1;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+import ru.exsample.task1.Data;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
 
 import static helper.Utils.randomInvalidName;
 import static java.lang.System.out;
@@ -21,6 +21,7 @@ public class DataTest {
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
     }
+
     @AfterEach
     public void restoreStreams() {
         System.setOut(originalOut);

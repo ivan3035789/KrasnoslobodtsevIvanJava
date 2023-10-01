@@ -2,6 +2,7 @@ package task3;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+import ru.exsample.task3.Data3;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -19,6 +20,7 @@ public class DataTest3 {
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
     }
+
     @AfterEach
     public void restoreStreams() {
         System.setOut(originalOut);
