@@ -31,10 +31,10 @@ public class DataTest3 {
     @DisplayName("must output array elements that are multiples of three")
     @Test
     public void mustOutputArrayElementsThatAreMultiplesOfThree() {
-        int[] args = {1, 3, 6, 9, 30};
+        double[] args = {1, 3, 6, 9, 30};
 
-        int[] actual = data3.arrayHandler(args);
-        int[] expected = new int[]{3, 6, 9, 30};
+        double[] actual = data3.arrayHandler(args);
+        double[] expected = new double[]{3, 6, 9, 30};
         assertArrayEquals(expected, actual);
     }
 
@@ -43,10 +43,10 @@ public class DataTest3 {
     @DisplayName("must output array elements that are multiples of three")
     @Test
     public void theProgramShouldTerminateInTheAbsenceOfInputData() {
-        int[] args = {};
+        double[] args = {};
 
-        int[] actual = data3.arrayHandler(args);
-        int[] expected = new int[]{};
+        double[] actual = data3.arrayHandler(args);
+        double[] expected = new double[]{};
         assertArrayEquals(expected, actual);
     }
 
@@ -55,10 +55,10 @@ public class DataTest3 {
     @DisplayName("")
     @Test
     public void mustOutputTheContentsOfTheArray() {
-        int[] args = {1, 3, 6, 9, 30};
+        double[] args = {1, 3, 6, 9, 30};
 
-        int[] actual = data3.arrayHandler(args);
-        int[] expected = new int[]{3, 6, 9, 30};
+        double[] actual = data3.arrayHandler(args);
+        double[] expected = new double[]{3, 6, 9, 30};
         assertArrayEquals(expected, actual);
         data3.printNum(actual);
         assertEquals("[3, 6, 9, 30]", outContent.toString().trim());
