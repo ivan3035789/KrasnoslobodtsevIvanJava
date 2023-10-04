@@ -45,7 +45,7 @@ jobs:
       if: success() || failure()
       with:
         name: jococo_Report_index.html
-        path: build/jacocoHtml/
+        path: build/reports/jacocoHtml/
   report:
     runs-on: ubuntu-latest
     needs: tests 
