@@ -13,6 +13,7 @@ import static helper.Utils.randomInvalidName;
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+//@SuppressWarnings("checkstyle:DataTest")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class DataTest {
     Data data = new Data();

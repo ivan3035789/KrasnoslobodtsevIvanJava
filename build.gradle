@@ -56,6 +56,15 @@ checkstyleTest {
     source = 'src/test/java'
 }
 
+spotbugs {
+    ignoreFailures.set(false)
+    // etc
+}
+spotbugsTest {
+    ignoreFailures = true
+    // etc
+}
+
 jacocoTestCoverageVerification {
     violationRules {
         rule {

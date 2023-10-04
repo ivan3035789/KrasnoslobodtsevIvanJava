@@ -1,7 +1,5 @@
 package ru.exsample.task1;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
@@ -35,8 +33,7 @@ public class Data {
      * @param nameSet - имя
      * @return возвращает "Привет, Вячеслав" или "Нет такого имени"
      */
-    @SuppressWarnings("checkstyle:EqualsAvoidNull")
-    public String choiceName(@NotNull final String nameSet) {
+    public String choiceName(final String nameSet) {
         final String[] strName = {"Привет, " + nameSet, "Нет такого имени"};
         return nameSet.equals("Вячеслав") ? strName[0] : strName[1];
     }
