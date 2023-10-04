@@ -2,10 +2,21 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'checkstyle'
+    id 'com.github.spotbugs' version '5.0.9'
 }
 
 checkstyle {
-    toolVersion = '10.2'
+    toolVersion '10.3.1'
+    configFile file("src/main/resources/checkstyle.xml")
+    ignoreFailures = false
+    maxWarnings = 0
+    maxErrors = 0
+}
+
+spotbugs {
+    showProgress = true
+    effort = 'max'
+    reportLevel = 'low'
 }
 
 group 'org.aston'
@@ -13,8 +24,8 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 11
 
-//compileJava.options.encoding = "UTF-8"
-//compileTestJava.options.encoding = "UTF-8"
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 
 repositories {
     mavenCentral()
@@ -22,9 +33,9 @@ repositories {
 
 dependencies {
     implementation 'org.jetbrains:annotations:24.0.1'
-//    implementation group: 'com.puppycrawl.tools', name: 'checkstyle', version: '10.12.3'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.0'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
@@ -38,12 +49,11 @@ tasks.named('test', Test) {
     }
 }
 
-tasks.withType(Checkstyle) {
-    reports {
-        xml.required = false
-        html.required = true
-        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
-    }
+checkstyleMain {
+    source = 'src/main/java'
+}
+checkstyleTest {
+    source = 'src/test/java'
 }
 
 jacocoTestCoverageVerification {
@@ -68,12 +78,23 @@ jacocoTestCoverageVerification {
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+    dependsOn checkstyleMain, checkstyleTest
 }
 
 jacocoTestReport {
     reports {
         xml.required = false
         csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        html.outputLocation = file("$buildDir/reports/jacocoHtml")
+    }
+}
+
+spotbugsMain {
+    reports {
+        html {
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            stylesheet = 'fancy-hist.xsl'
+        }
     }
 }

@@ -1,43 +1,44 @@
 package ru.exsample.task3;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- * Класс данных со свойствами <b>argsNum</b> <b>argsNum2</b>.
+ * Класс данных со свойством <b>argsNum2</b>.
+ *
  * @author Ivan
  * @version 1.0
  */
 public class Data3 {
 
-    /** Массив с введенными числами. */
+    /**
+     * Массив с введенными числами.
+     */
     private double[] argsNum2 = new double[0];
-
-    /** Массив с числами кратными 3. */
-    private double[] argsNum = new double[0];
 
     /**
      * Функция ввода чисел в консоле {@link Data3#argsNum2}.
      */
     public void inputAndSave() {
-        Scanner scanner = new Scanner(System.in);
+        final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         System.out.println("Введите число и нажимайте ENTER:\n");
         System.out.println("Для завершения нажимайте ENTER:\n");
         String line;
 
         while ((line = scanner.nextLine()) != null && !line.isEmpty()) {
-            Scanner lineScanner = new Scanner(line);
+            final Scanner lineScanner = new Scanner(line);
             try {
-                double inputNum = lineScanner.nextDouble();
+                final double inputNum = lineScanner.nextDouble();
                 System.out.println("Введите число и нажимайте ENTER:\n");
                 System.out.println("Для завершения нажимайте ENTER:\n");
-                int length = argsNum2.length + 1;
-                double[] tmp = new double[length];
+                final int length = argsNum2.length + 1;
+                final double[] tmp = new double[length];
                 System.arraycopy(argsNum2, 0, tmp, 0, argsNum2.length);
-                int lastIndex = tmp.length - 1;
+                final int lastIndex = tmp.length - 1;
                 tmp[lastIndex] = inputNum;
                 argsNum2 = tmp;
-            } catch (Exception e) {
+            } catch (RuntimeException e) {
                 if (line.contains(".")) {
                     System.out.println("используйте \",\" для дробного числа");
                 } else {
@@ -47,20 +48,23 @@ public class Data3 {
         }
     }
 
+
     /**
-     * Функция перебора массива с числами {@link Data3#argsNum}.
+     * Функция перебора массива с числами {@link Data3#argsNum2}.
+     *
      * @param input - массив с числами
      * @return возвращает массив с числами кратными 3
      */
     public double[] arrayHandler(final double[] input) {
+        double[] argsNum = new double[0];
         int i = 0;
         final double multipleNumber = 3;
         while (i < input.length) {
             if (input[i] % multipleNumber == 0) {
-                int length = argsNum.length + 1;
-                double[] tmp = new double[length];
+                final int length = argsNum.length + 1;
+                final double[] tmp = new double[length];
                 System.arraycopy(argsNum, 0, tmp, 0, argsNum.length);
-                int lastIndex = tmp.length - 1;
+                final int lastIndex = tmp.length - 1;
                 tmp[lastIndex] = input[i];
                 argsNum = tmp;
             }
@@ -70,7 +74,8 @@ public class Data3 {
     }
 
     /**
-     * Функция вывода приветствия {@link Data3#argsNum}.
+     * Функция вывода приветствия.
+     *
      * @param argsNumMultipleNumber - массив с числами кратными 3
      */
     public void printNum(final double[] argsNumMultipleNumber) {
@@ -79,10 +84,11 @@ public class Data3 {
 
     /**
      * Функция запуска программы.
+     *
      * @param args - массив строк
      */
     public static void main(final String[] args) {
-        Data3 data3 = new Data3();
+        final Data3 data3 = new Data3();
         data3.inputAndSave();
         data3.printNum(data3.arrayHandler(data3.argsNum2));
     }

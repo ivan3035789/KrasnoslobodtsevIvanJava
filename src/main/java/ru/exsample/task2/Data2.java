@@ -1,5 +1,6 @@
 package ru.exsample.task2;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
@@ -42,7 +43,7 @@ public class Data2 {
      * @return возвращает число введенное из консоли
      */
     public int inputDate() {
-        Scanner scanner = new Scanner(System.in);
+        final Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
         System.out.println("Введите число: \n");
             try {
                 num = scanner.nextInt();
@@ -66,7 +67,7 @@ public class Data2 {
      * @param args - массив строк
      */
     public static void main(final String[] args) {
-        Data2 data2 = new Data2();
+        final Data2 data2 = new Data2();
         data2.inputDate();
         data2.printGreeting(data2.choiceNum(data2.getNum()));
     }

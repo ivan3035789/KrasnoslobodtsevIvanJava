@@ -3,6 +3,8 @@ package task2;
 import helper.Utils;
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import ru.exsample.task2.Data2;
 
 import java.io.ByteArrayOutputStream;
@@ -40,9 +42,10 @@ public class DataTest2 {
     @Order(2)
     @Description("В этом тест-кейсе мы проверяем что при вводе цифры больше 7 выводится Привет")
     @DisplayName("Must bring out the following")
-    @Test
-    public void mustBringOutTheFollowing() {
-        data2.setNum(8);
+    @ParameterizedTest
+    @CsvFileSource(resources = {"data/data2.csv"})
+    public void mustBringOutTheFollowing(int num) {
+        data2.setNum(num);
         data2.printGreeting(data2.choiceNum(data2.getNum()));
         assertEquals("Привет", outContent.toString().trim());
     }
@@ -53,6 +56,17 @@ public class DataTest2 {
     @Test
     public void shouldOutputAnEmptyString() {
         data2.setNum(Utils.randomInvalidNum());
+        data2.printGreeting(data2.choiceNum(data2.getNum()));
+        assertEquals("", outContent.toString().trim());
+    }
+
+    @Order(4)
+    @Description("В этом тест-кейсе мы проверяем что при вводе цифры меньше 7 выводится пустое сообщение")
+    @DisplayName("Should output an empty string")
+    @ParameterizedTest
+    @CsvFileSource(resources = {"data/invalidData2.csv"})
+    public void shouldOutputAnEmptyStringParameterizedTest(int num) {
+        data2.setNum(num);
         data2.printGreeting(data2.choiceNum(data2.getNum()));
         assertEquals("", outContent.toString().trim());
     }

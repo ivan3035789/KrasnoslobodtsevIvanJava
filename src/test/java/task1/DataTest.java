@@ -2,6 +2,8 @@ package task1;
 
 import jdk.jfr.Description;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import ru.exsample.task1.Data;
 
 import java.io.ByteArrayOutputStream;
@@ -46,6 +48,20 @@ public class DataTest {
     @RepeatedTest(4)
     public void ShouldOutputHelloVyacheslav() {
         data.setName(randomInvalidName());
+        String expected = "Нет такого имени";
+        String actual = data.choiceName(data.getName());
+        assertEquals(expected, actual);
+        data.printName(data.choiceName(data.getName()));
+        assertEquals("Нет такого имени", outContent.toString().trim());
+    }
+
+    @Order(3)
+    @Description("В этом параметризованном тест-кейсе мы проверяем что при вводе, не имени 'Вячеслав', выводиться надпись 'Нет такого имени'")
+    @DisplayName("must buy tour of Approved ParameterizedTest")
+    @ParameterizedTest
+    @CsvFileSource(resources = {"/task1/invalidNameData.csv"})
+    public void ShouldOutputHelloVyacheslavParameterizedTest(String name) {
+        data.setName(name);
         String expected = "Нет такого имени";
         String actual = data.choiceName(data.getName());
         assertEquals(expected, actual);

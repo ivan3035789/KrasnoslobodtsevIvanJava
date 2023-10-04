@@ -44,7 +44,6 @@ public class DataTest3 {
     @Test
     public void theProgramShouldTerminateInTheAbsenceOfInputData() {
         double[] args = {};
-
         double[] actual = data3.arrayHandler(args);
         double[] expected = new double[]{};
         assertArrayEquals(expected, actual);
@@ -52,7 +51,7 @@ public class DataTest3 {
 
     @Order(3)
     @Description("В этом тест-кейсе мы проверяем что выводится содержимое массива")
-    @DisplayName("")
+    @DisplayName("must output the contents of the array")
     @Test
     public void mustOutputTheContentsOfTheArray() {
         double[] args = {1, 3, 6, 9, 30};
@@ -61,6 +60,8 @@ public class DataTest3 {
         double[] expected = new double[]{3, 6, 9, 30};
         assertArrayEquals(expected, actual);
         data3.printNum(actual);
-        assertEquals("[3, 6, 9, 30]", outContent.toString().trim());
+        assertEquals("[3.0, 6.0, 9.0, 30.0]", outContent.toString().trim());
+
     }
 }
+//TODO исправить spotbugsTest
