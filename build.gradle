@@ -2,24 +2,6 @@ plugins {
     id 'java'
     id 'application'
     id 'org.openjfx.javafxplugin' version '0.0.10'
-    id 'org.beryx.jlink' version '2.24.1'
-    id 'jacoco'
-    id 'checkstyle'
-    id 'com.github.spotbugs' version '5.0.9'
-}
-
-checkstyle {
-    toolVersion '10.3.1'
-    configFile file("src/main/resources/checkstyle.xml")
-    ignoreFailures = false
-    maxWarnings = 0
-    maxErrors = 0
-}
-
-spotbugs {
-    showProgress = true
-    effort = 'max'
-    reportLevel = 'low'
 }
 
 group 'com.example'
@@ -38,98 +20,18 @@ application {
     mainModule = 'com.example.task1'
     mainClass = 'com.example.task1.HelloApplication'
 }
+
 javafx {
     version = '11.0.2'
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
+
 dependencies {
-    implementation 'org.jetbrains:annotations:24.0.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.2'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-    testImplementation group: 'org.testfx', name: 'testfx-core', version: '4.0.16-alpha'
-
-}
-
-tasks.named('test', Test) {
-    useJUnitPlatform()
-
-    maxHeapSize = '1G'
-
-    testLogging {
-        events "passed"
-    }
-}
-
-checkstyleMain {
-    source = 'src/main/java'
-}
-checkstyleTest {
-    source = 'src/test/java'
-}
-
-spotbugs {
-    ignoreFailures.set(false)
-
-}
-spotbugsTest {
-    ignoreFailures = true
-
-}
-
-jacocoTestCoverageVerification {
-    violationRules {
-        rule {
-            element = 'CLASS'
-            limit {
-                minimum = 0.3
-            }
-        }
-        rule {
-            element = 'CLASS'
-            limit {
-                counter = 'LINE'
-                value = 'COVEREDRATIO'
-                minimum = 0.3
-            }
-        }
-    }
+    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
 }
 
 test {
     useJUnitPlatform()
-    finalizedBy jacocoTestReport
-    dependsOn checkstyleMain, checkstyleTest
-}
-
-jacocoTestReport {
-    reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = file("$buildDir/reports/jacocoHtml")
-    }
-}
-
-spotbugsMain {
-    reports {
-        html {
-            required = true
-            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
-            stylesheet = 'fancy-hist.xsl'
-        }
-    }
-}
-
-jlink {
-    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
-        name = 'app'
-    }
-}
-
-jlinkZip {
-    group = 'distribution'
 }

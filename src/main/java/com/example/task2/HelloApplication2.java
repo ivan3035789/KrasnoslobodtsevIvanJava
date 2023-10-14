@@ -1,4 +1,4 @@
-package com.example.task;
+package com.example.task2;
 
 import com.example.task1.HelloApplication;
 import javafx.application.Application;

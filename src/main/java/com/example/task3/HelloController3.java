@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 /**
  * Класс ввода, обработки и вывода данных со свойствами <b>welcomeText</b>.
+ *
  * @author Ivan
  * @version 1.0
  */
@@ -21,43 +22,63 @@ public class HelloController3 {
      */
     private double[] argsNum2 = new double[0];
 
-    /** Поле для ввода делиметра. */
+    /**
+     * Поле для ввода делиметра.
+     */
     @FXML
     public TextField inputFieldDelimetr;
 
-    /** Кнопка вывода чисел кратных числу fx:id="enterBtn". */
+    /**
+     * Кнопка вывода чисел кратных числу fx:id="enterBtn".
+     */
     @FXML
     public Button enterBtn;
 
-    /** Кнопка вывода всего списка чисел fx:id="enterAll". */
+    /**
+     * Кнопка вывода всего списка чисел fx:id="enterAll".
+     */
     @FXML
     private Button enterAll;
 
-    /** Кнопка удаления всего списка fx:id="cancelBtn". */
+    /**
+     * Кнопка удаления всего списка fx:id="cancelBtn".
+     */
     @FXML
     public Button cancelBtn;
 
-    /** Поле для ввода цифр  fx:id="inputField". */
+    /**
+     * Поле для ввода цифр  fx:id="inputField".
+     */
     @FXML
     public TextField inputField;
 
-    /** Кнопка добавления числа в список fx:id="addBtn". */
+    /**
+     * Кнопка добавления числа в список fx:id="addBtn".
+     */
     @FXML
     private Button addBtn;
 
-    /** Поле вывода предупреждающих сообщений  fx:id="errorLabel". */
+    /**
+     * Поле вывода предупреждающих сообщений  fx:id="errorLabel".
+     */
     @FXML
     private Label errorLabel;
 
-    /** Поле вывода предупреждающих сообщений  fx:id="errorLabelDelimetr". */
+    /**
+     * Поле вывода предупреждающих сообщений  fx:id="errorLabelDelimetr".
+     */
     @FXML
     private Label errorLabelDelimetr;
 
-    /** Поле вывода введенных данных  fx:id="mainLabel". */
+    /**
+     * Поле вывода введенных данных  fx:id="mainLabel".
+     */
     @FXML
     private Label mainLabel;
 
-    /** Кнопка удаления числа из список fx:id="removeBtn". */
+    /**
+     * Кнопка удаления числа из список fx:id="removeBtn".
+     */
     @FXML
     private Button removeBtn;
 
@@ -81,7 +102,7 @@ public class HelloController3 {
     /**
      * Функция перебора массива с числами {@link HelloController3#argsNum2}.
      * @param input - массив с числами
-     * @param num - делитель
+     * @param num   - делитель
      * @return возвращает массив с числами кратными делителю
      */
     public double[] arrayHandler(final double[] input, String num) {
@@ -104,7 +125,7 @@ public class HelloController3 {
     /**
      * Функция удаления числа из массива {@link HelloController3#argsNum2}.
      * @param input - массив с числами
-     * @param num - удаляемое число
+     * @param num   - удаляемое число
      * @return возвращает массив с числами кратными делителю
      */
     public double[] arrayHandlerRemove(final double[] input, double num) {
@@ -137,7 +158,7 @@ public class HelloController3 {
         try {
             Double.parseDouble(str);
             return true;
-        } catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }
@@ -149,7 +170,7 @@ public class HelloController3 {
     @FXML
     void addClick(ActionEvent event) {
         try {
-            if (errorLabel.isVisible()) {
+            if (errorLabel.isVisible() || errorLabelDelimetr.isVisible()) {
                 errorLabel.setText("");
                 mainLabel.setText("");
             }
@@ -158,6 +179,13 @@ public class HelloController3 {
         } catch (Exception e) {
             if (inputField.getText().trim().isEmpty()) {
                 errorLabel.setText("Поле не должно быть пустым");
+                if (!isNumeric(inputFieldDelimetr.getText())) {
+                    errorLabelDelimetr.setText("Вводите только цифры!");
+                }
+                if (inputFieldDelimetr.getText().isEmpty() && inputField.getText().isEmpty()) {
+                    errorLabel.setText("Поле не должно быть пустым");
+                    errorLabelDelimetr.setText("Поле не должно быть пустым");
+                }
             } else {
                 inputField.getText();
                 errorLabel.setText("Вводите только цифры!");
@@ -167,6 +195,7 @@ public class HelloController3 {
 
     /**
      * Функция удаления списка с числами {@link HelloController3#argsNum2}.
+     *
      * @param event - нажатие на кнопку удаления
      */
     @FXML
@@ -181,27 +210,45 @@ public class HelloController3 {
 
     /**
      * Функция вывода списка с числами кратными делиметру {@link HelloController3#argsNum2}.
+     *
      * @param event - нажатие на кнопку вывода
      */
     @FXML
     void enterClick(ActionEvent event) {
-        if (errorLabelDelimetr.isVisible()) {
+        if (errorLabel.isVisible() || errorLabelDelimetr.isVisible()) {
             errorLabelDelimetr.setText("");
+            errorLabel.setText("");
+            mainLabel.setText("Список пуст!");
         }
         try {
-            mainLabel.setText(Arrays.toString(arrayHandler(argsNum2, inputFieldDelimetr.getText())));
-        } catch (Exception e) {
-            if (inputFieldDelimetr.getText().trim().isEmpty()) {
-                errorLabelDelimetr.setText("Поле не должно быть пустым");
-            } else {
-                inputFieldDelimetr.getText();
+            mainLabel.setText(Arrays.toString(arrayHandler(argsNum2, inputFieldDelimetr.getText().trim())));
+            errorLabelDelimetr.setText("Добавьте делитель");
+            if (errorLabelDelimetr.isVisible() && !inputFieldDelimetr.getText().isEmpty()) {
+                errorLabelDelimetr.setText("");
+            }
+            if (!isNumeric(inputFieldDelimetr.getText())) {
                 errorLabelDelimetr.setText("Вводите только цифры!");
             }
-        }
-        if (argsNum2 == null || argsNum2.length == 0) {
-            mainLabel.setText("Список пуст!");
-            errorLabelDelimetr.setText("Добавьте делитель");
+            if (inputFieldDelimetr.getText().isEmpty()) {
+                errorLabelDelimetr.setText("Добавьте делитель");
+            }
+            if (!isNumeric(inputField.getText())) {
+                errorLabel.setText("Вводите только цифры!");
+            }
+            if (Integer.parseInt(inputFieldDelimetr.getText()) == 0) {
+                errorLabelDelimetr.setText("На 0 делить нельзя");
+            }
             errorLabel.setText("Введите число и добавте в список");
+            mainLabel.setText("Список пуст!");
+        } catch (Exception e) {
+            if (inputField.getText().trim().isEmpty()) {
+                errorLabelDelimetr.setText("Поле не должно быть пустым");
+                errorLabel.setText("Поле не должно быть пустым");
+            } else {
+                inputField.getText();
+                errorLabelDelimetr.setText("Вводите только цифры!");
+                errorLabel.setText("Вводите только цифры!");
+            }
         }
     }
 
@@ -214,18 +261,17 @@ public class HelloController3 {
         if (errorLabel.isVisible()) {
             errorLabel.setText("");
             errorLabelDelimetr.setText("");
+            inputField.setText("");
         }
         try {
             mainLabel.setText(Arrays.toString(arrayHandlerRemove(argsNum2, Double.parseDouble(inputField.getText()))));
         } catch (Exception e) {
             if (inputField.getText().trim().isEmpty()) {
                 errorLabel.setText("Введите число для удаления ");
-            }
-            else if (argsNum2 == null || argsNum2.length == 0) {
+            } else if (argsNum2 == null || argsNum2.length == 0) {
                 mainLabel.setText("Список пуст!");
                 errorLabel.setText("Список пуст!");
-            }
-            else if (argsNum2.length != 0 && isNumeric(inputField.getText())) {
+            } else if (argsNum2.length != 0 && isNumeric(inputField.getText())) {
                 errorLabel.setText("В списке отсутствует число " + inputField.getText());
             } else {
                 errorLabel.setText("Вводите только цифры!");
