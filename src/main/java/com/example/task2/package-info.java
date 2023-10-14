@@ -3,4 +3,4 @@
  * @author baeldung
  * @version 1.1
  */
-package com.example.task2;
+package com.example.task;

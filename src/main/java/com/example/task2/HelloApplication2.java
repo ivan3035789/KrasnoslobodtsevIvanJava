@@ -1,4 +1,4 @@
-package com.example.task2;
+package com.example.task;
 
 import com.example.task1.HelloApplication;
 import javafx.application.Application;
@@ -20,7 +20,7 @@ public class HelloApplication2 extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com.example/task1/hello.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com.example/task1/hello2.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setScene(scene);
         primaryStage.show();

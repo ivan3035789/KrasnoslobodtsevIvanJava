@@ -1,4 +1,9 @@
-package com.example.task1;
+package com.example.task;
+
+//import javafx.application.Application;
+//import javafx.fxml.FXMLLoader;
+//import javafx.scene.Scene;
+//import javafx.stage.Stage;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,21 +23,12 @@ public class HelloApplication extends Application {
     /** Поле результат. */
     private static Optional<String> result;
 
-
-    /**
-     * Функция получения значения поля {@link HelloApplication#result}.
-     * @return возвращает результат
-     */
-    public Optional<String> getResult() {
-        return result;
-    }
-
     /**
      * Функция ввода имени {@link HelloApplication#result}.
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com.example/task1/hello2.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com.example/task/hello2.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         primaryStage.setScene(scene);
         primaryStage.show();

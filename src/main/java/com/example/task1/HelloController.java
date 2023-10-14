@@ -1,4 +1,4 @@
-package com.example.task1;
+package com.example.task;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -41,6 +41,14 @@ public class HelloController {
     /** Кнопка ok fx:id="okBtn". */
     @FXML
     private Button okBtn;
+
+    public Label getMainLabel() {
+        return mainLabel;
+    }
+
+    public void setInputField(TextField inputField) {
+        this.inputField = inputField;
+    }
 
     /**
      * Функция обработки введенного значения {@link HelloController}.

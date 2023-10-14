@@ -1,6 +1,7 @@
 module com.example {
-    requires javafx.controls;
+    requires javafx.graphics;
     requires javafx.fxml;
+    requires javafx.controls;
 
     exports com.example.task1;
     opens com.example.task1 to javafx.fxml;
@@ -11,3 +12,4 @@ module com.example {
     exports com.example.task3;
     opens com.example.task3 to javafx.fxml;
 }
+

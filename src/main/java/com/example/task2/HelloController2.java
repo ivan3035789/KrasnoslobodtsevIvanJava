@@ -1,4 +1,4 @@
-package com.example.task2;
+package com.example.task;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
